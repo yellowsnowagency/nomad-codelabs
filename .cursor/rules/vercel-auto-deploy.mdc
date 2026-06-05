@@ -1,0 +1,26 @@
+---
+description: Deploy to Vercel production after every code change
+alwaysApply: true
+---
+
+# Auto-deploy to Vercel
+
+After making any change to this project, deploy to Vercel production before ending the turn.
+
+## Workflow
+
+1. Make the requested code change.
+2. Run `npm run build` — fix any build errors before deploying.
+3. Deploy with `vercel deploy --prod --yes` from the project root.
+4. Report the production URL (`https://nmdcd.com`) and deployment inspect link.
+
+## When to skip
+
+- Question-only or review-only requests with no file edits.
+- User explicitly says not to deploy.
+- Build fails and cannot be fixed in the same turn — report the failure instead.
+
+## Notes
+
+- This project has no git remote; use the Vercel CLI, not `git push`.
+- Do not commit unless the user asks.

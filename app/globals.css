@@ -1,26 +1,208 @@
 @import "tailwindcss";
 
+/* ============================================================
+   NOMAD // CODELABS — OUT OF THE PARK
+   Pure black · massive Syne · electric accent · loud & joyful
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:        #000000;
+  --bg-2:      #0A0A0A;
+  --ink:       #FAFAF7;
+  --ink-dim:   #8E8E88;
+  --ink-faint: #555550;
+  --line:      rgba(250, 250, 247, 0.13);
+  --line-soft: rgba(250, 250, 247, 0.06);
+  --accent:    #7DB0FF;   /* light blue */
+  --accent-2:  #E6B65C;   /* warm amber — invite-only contrast */
+  --ink-invert:#000000;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-line: var(--line);
+
+  --font-display: var(--font-outfit), "Arial Black", sans-serif;
+  --font-logo: var(--font-bricolage), sans-serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  background: #000;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: #000; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #222; border: 3px solid #000; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* faint grain only — keep it stark */
+.atmos-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Shell ---- */
+.shell {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-inline: clamp(1.1rem, 3.5vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Typography: HUGE & BOLD ---- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  text-transform: none;
+}
+.display-tight { letter-spacing: -0.05em; line-height: 0.82; }
+
+.kicker {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow-dim { color: var(--ink-dim); }
+
+.wordmark {
+  font-family: var(--font-logo);
+  font-weight: 200;
+  letter-spacing: 0.06em;
+}
+
+.hairline { border-color: var(--line); }
+
+/* outlined display text (Readymag flavor) */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--ink);
+}
+.outline-accent { -webkit-text-stroke-color: var(--accent); }
+
+/* Accent link underline */
+.ul-link { position: relative; color: inherit; text-decoration: none; }
+.ul-link::after {
+  content: "";
+  position: absolute; left: 0; bottom: -3px;
+  width: 100%; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.ul-link:hover::after { transform: scaleX(1); }
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.95s cubic-bezier(0.16,1,0.3,1), transform 0.95s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* Marquees */
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@keyframes marquee-rev { from { transform: translateX(-50%) } to { transform: translateX(0) } }
+.marquee-track { display: inline-flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+.marquee-rev { animation: marquee-rev 36s linear infinite; }
+
+/* ---- Buttons (bold) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  padding: 0.95rem 1.7rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  cursor: pointer;
+}
+.btn:hover { background: var(--ink); color: #000; transform: translateY(-2px); }
+.btn-solid {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+.btn-solid:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ---- Cards & showpieces ---- */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.showpiece {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), box-shadow 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.showpiece:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,0.9), 0 0 60px -12px rgba(125,176,255,0.28);
+}
+
+/* Product row — BIG */
+.product-row { position: relative; transition: padding 0.4s cubic-bezier(0.16,1,0.3,1); }
+.product-row:hover { padding-left: 0.75rem; }
+
+input, textarea, select { font-family: var(--font-sans); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, .reveal, .marquee-track, .marquee-rev { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
 }
