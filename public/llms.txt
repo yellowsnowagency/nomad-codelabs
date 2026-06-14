@@ -1,0 +1,40 @@
+# NOMAD // CODELABS
+
+> Independent software house building bold, modern, beautifully engineered software for a borderless world. Worldwide, nomad-based team shipping Audiocrypt, Feeper, Fasting Cycle, Better TV, the Minto suite, and more.
+
+Nomad Code Labs (NOMAD // CODELABS) is an independent software studio with no headquarters and no single timezone. We design and ship encrypted media tools, health apps, invoicing SaaS, IPTV clients, productivity suites, trading software, and production tools. Beta access is open for select products.
+
+- Website: https://nmdcd.com
+- Sitemap: https://nmdcd.com/sitemap.xml
+- Full corpus: https://nmdcd.com/llms-full.txt
+
+## Core pages
+
+- [Home](https://nmdcd.com/): Studio overview, product catalogue, approach, and beta signup.
+- [Beta program](https://nmdcd.com/beta): Early access to Audiocrypt, Fasting Cycle, and Feeper.
+
+## Products — beta open
+
+- [Audiocrypt](https://nmdcd.com/products/audiocrypt): Secure digital rights and licensing management with AES-256-GCM encryption and offline license-gated playback.
+- [Fasting Cycle](https://nmdcd.com/products/fasting-cycle): Intermittent fasting companion for iPhone and Android built around a single zooming phase circle.
+- [Feeper](https://nmdcd.com/products/feeper): Keyboard-first invoicing SaaS for freelancers and nomads with multi-country tax support.
+
+## Products — in development
+
+- [Better TV](https://nmdcd.com/products/better-tv): Syncable multi-platform IPTV client for Xtream Codes, M3U, Jellyfin, and Emby.
+- [Minto Contact](https://nmdcd.com/products/minto-contact): Context-rich contacts layer for the Minto productivity suite.
+- [Minto Task](https://nmdcd.com/products/minto-task): Task manager built on the Minto float model — fluid, fast, suite-native.
+- [Minto Form Creator](https://nmdcd.com/products/minto-form-creator): Form builder that routes structured intake into Contact and Task.
+- [Minto Mail](https://nmdcd.com/products/minto-mail): Keyboard-first Mac mail client with group-based inbox and AI assist.
+- [Rerista](https://nmdcd.com/products/rerista): Product journalism magazine with in-depth reviews and expert insight.
+- [Film Project Scheduler](https://nmdcd.com/products/film-scheduler): Production breakdown and scheduling for film and TV.
+- [CloudCut SuperSonic](https://nmdcd.com/products/cloudcut-supersonic): Parallel multipart large-file transfer to Cloudflare R2 with resume and verification.
+
+## Products — research & invite only
+
+- [Joe the Trader](https://nmdcd.com/products/joe-the-trader): Autonomous AI trading desk with specialist agents — invite only.
+- [Writer's Room](https://nmdcd.com/products/writers-room): Collaborative writing room for screenwriters and authors — in research.
+
+## Optional
+
+- [llms-full.txt](https://nmdcd.com/llms-full.txt): Full Markdown corpus of studio and product pages for single-fetch AI ingestion.

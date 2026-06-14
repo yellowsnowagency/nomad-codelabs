@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PRODUCTS, getProduct } from "@/app/lib/products";
+import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 import Reveal from "@/app/components/reveal";
 import StatusPill from "@/app/components/status-pill";
 import BetaForm from "@/app/components/beta-form";
@@ -19,9 +20,28 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = getProduct(slug);
   if (!p) return { title: "Not found" };
+  const url = `${SITE_URL}/products/${p.slug}`;
   return {
     title: `${p.name} — ${p.tagline}`,
     description: p.summary,
+    keywords: [p.name, p.category, p.codename, SITE_NAME, "Nomad Code Labs"],
+    alternates: { canonical: `/products/${p.slug}` },
+    openGraph: {
+      title: `${p.name} — ${p.tagline}`,
+      description: p.summary,
+      type: "website",
+      url,
+      siteName: SITE_NAME,
+      images: p.shots?.[0]
+        ? [{ url: p.shots[0].src, alt: p.shots[0].caption }]
+        : [{ url: "/og.png", alt: `${SITE_NAME} — ${p.name}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.name} — ${p.tagline}`,
+      description: p.summary,
+      images: p.shots?.[0] ? [p.shots[0].src] : ["/og.png"],
+    },
   };
 }
 
@@ -221,7 +241,23 @@ export default async function ProductPage({
           </Reveal>
 
           <Reveal delay={120}>
-            <BetaForm defaultProduct={product.slug} />
+            <BetaForm
+              defaultProduct={product.slug}
+              title={
+                product.beta
+                  ? `Join ${product.name}`
+                  : invite
+                    ? `Request ${product.name} access`
+                    : `Get notified — ${product.name}`
+              }
+              subtitle={
+                product.beta
+                  ? "We'll email you when your beta slot opens."
+                  : invite
+                    ? "Request an invitation and we'll be in touch."
+                    : "Be first to know when the beta opens."
+              }
+            />
           </Reveal>
         </div>
       </section>

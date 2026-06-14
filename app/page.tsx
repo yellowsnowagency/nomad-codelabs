@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PRODUCTS, BETA_PRODUCTS } from "./lib/products";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "./lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: SITE_URL },
+  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+};
 import WorldClock from "./components/world-clock";
 import Reveal from "./components/reveal";
 import StatusPill from "./components/status-pill";
 import BetaForm from "./components/beta-form";
+import RowArrow from "./components/row-arrow";
 
 const APPROACH = [
   {
@@ -43,9 +52,9 @@ export default function Home() {
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="shell pt-14 pb-16 md:pt-16 md:pb-24">
+      <section className="shell pt-12 pb-14 md:pt-16 md:pb-24">
         <Reveal>
-          <div className="flex items-center justify-between flex-wrap gap-3 kicker text-[var(--ink-dim)] mb-10 md:mb-14">
+          <div className="flex items-center justify-between flex-wrap gap-3 kicker text-[var(--ink-dim)] mb-6 md:mb-14">
             <span className="flex items-center gap-2">
               <span
                 className="inline-block w-[8px] h-[8px] rounded-full bg-[var(--accent)]"
@@ -58,25 +67,36 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={60}>
-          <h1
-            className="wordmark text-[clamp(2.1rem,3vw,2.78rem)] whitespace-nowrap text-[var(--ink-dim)] mb-5 md:mb-6"
-            style={{ letterSpacing: "0.2em" }}
-          >
+          <h1 className="wordmark hero-wordmark whitespace-nowrap text-[var(--ink-dim)] mb-4 md:mb-6">
             NOMAD <span className="text-[var(--accent)] font-normal">//</span> CODELABS
           </h1>
         </Reveal>
 
         <Reveal delay={130}>
-          <h2 className="display text-[clamp(2.4rem,7vw,6rem)] max-w-2xl text-[var(--ink)]">
-            We make software,{" "}
-            <span className="text-[var(--accent)]">beautifully</span>.
-            <br />
-            For a world without borders.
+          <h2 className="display hero-tagline text-[var(--ink)]">
+            <span className="md:hidden">
+              <span className="block">We make</span>
+              <span className="block">software,</span>
+              <span className="block">
+                <span className="text-[var(--accent)]">beautifully</span>.
+              </span>
+              <span className="block">For a world</span>
+              <span className="block">without borders.</span>
+            </span>
+            <span className="hidden md:block">
+              <span className="block whitespace-nowrap">
+                We make software,{" "}
+                <span className="text-[var(--accent)]">beautifully</span>.
+              </span>
+              <span className="block whitespace-nowrap">
+                For a world without borders.
+              </span>
+            </span>
           </h2>
         </Reveal>
 
         <Reveal delay={210}>
-          <p className="mt-8 max-w-xl text-[clamp(0.95rem,1.4vw,1.15rem)] leading-relaxed text-[var(--ink-dim)]">
+          <p className="mt-6 md:mt-8 max-w-xl text-[15px] md:text-[clamp(0.95rem,1.4vw,1.15rem)] leading-relaxed text-[var(--ink-dim)]">
             A worldwide team of makers building modern, meticulously crafted
             software — encrypted, fast, and unapologetically bold. New,
             independent, and entirely our own.
@@ -84,20 +104,17 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={230}>
-          <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Link href="#manifest" className="btn btn-solid">
+          <div className="mt-7 md:mt-10">
+            <Link href="#manifest" className="btn btn-solid btn-sm w-fit">
               See our software ↓
-            </Link>
-            <Link href="/beta" className="btn">
-              Join the beta
             </Link>
           </div>
         </Reveal>
 
         <Reveal delay={300}>
-          <div className="mt-14 pt-7 border-t hairline flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="mt-10 md:mt-14 pt-6 md:pt-7 border-t hairline flex flex-col gap-5 md:gap-6 md:flex-row md:items-center md:justify-between">
             <WorldClock />
-            <div className="flex gap-8 sm:gap-12">
+            <div className="flex flex-wrap gap-x-6 gap-y-3 sm:gap-x-12">
               {[
                 [`${PRODUCTS.length}`, "products", "var(--ink)"],
                 [`${BETA_PRODUCTS.length}`, "in beta", "var(--accent)"],
@@ -135,17 +152,14 @@ export default function Home() {
       </div>
 
       {/* ============ CATALOGUE ============ */}
-      <section id="manifest" className="shell py-20 md:py-32">
+      <section id="manifest" className="shell py-14 md:py-32">
         <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-16">
             <div>
-              <span
-                className="wordmark block text-[clamp(1.28rem,1.65vw,1.58rem)] text-[var(--ink-dim)] mb-4 md:mb-5 whitespace-nowrap"
-                style={{ letterSpacing: "0.22em" }}
-              >
+              <span className="wordmark section-wordmark block text-[var(--ink-dim)] mb-3 md:mb-5 whitespace-nowrap">
                 NOMAD <span className="text-[var(--accent)] font-normal">//</span> CODELABS
               </span>
-              <h2 className="display text-[clamp(2.4rem,7vw,6rem)] whitespace-nowrap">
+              <h2 className="display section-heading whitespace-nowrap">
                 Our software
               </h2>
             </div>
@@ -162,14 +176,17 @@ export default function Home() {
             <Reveal key={p.slug} delay={i * 22}>
               <Link
                 href={`/products/${p.slug}`}
-                className="product-row group grid grid-cols-[auto_1fr_auto] md:grid-cols-[90px_1fr_220px_56px] gap-4 md:gap-8 items-center py-5 md:py-7 border-b hairline"
+                className="product-row group grid grid-cols-[auto_1fr_auto] md:grid-cols-[90px_1fr_220px_56px] gap-3 md:gap-8 items-center py-4 md:py-7 border-b hairline"
               >
-                <span className="display text-[clamp(1.1rem,1.6vw,1.6rem)] text-[var(--ink-faint)] group-hover:text-[var(--accent)] transition-colors">
+                <span className="display text-[clamp(1rem,1.6vw,1.6rem)] text-[var(--ink-faint)] group-hover:text-[var(--accent)] transition-colors">
                   {p.index}
                 </span>
                 <span className="flex flex-col min-w-0">
-                  <span className="display text-[clamp(1.9rem,5.5vw,4.2rem)] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors duration-300 truncate">
+                  <span className="display product-name text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors duration-300 truncate">
                     {p.name}
+                  </span>
+                  <span className="text-[12px] md:text-[13px] text-[var(--ink-dim)] mt-1 md:hidden">
+                    {p.tagline}
                   </span>
                   <span className="text-[13px] text-[var(--ink-dim)] mt-1 hidden md:block">
                     {p.tagline}
@@ -179,9 +196,7 @@ export default function Home() {
                   <StatusPill status={p.status} />
                   <span className="text-[12px] text-[var(--ink-faint)]">{p.category}</span>
                 </span>
-                <span className="justify-self-end display text-[clamp(1.4rem,2vw,2rem)] text-[var(--ink-faint)] group-hover:text-[var(--accent)] group-hover:translate-x-2 transition-all duration-500">
-                  ↗
-                </span>
+                <RowArrow className="justify-self-end" />
               </Link>
             </Reveal>
           ))}
@@ -190,10 +205,10 @@ export default function Home() {
 
       {/* ============ STUDIO ============ */}
       <section id="approach" className="border-y hairline bg-[var(--bg-2)]">
-        <div className="shell py-20 md:py-32">
+        <div className="shell py-14 md:py-32">
           <Reveal>
-            <span className="eyebrow block mb-6">The studio</span>
-            <h2 className="display text-[clamp(2.4rem,7vw,6rem)] max-w-[14ch] mb-16 md:mb-20">
+            <span className="eyebrow block mb-5 md:mb-6">The studio</span>
+            <h2 className="display section-heading max-w-[14ch] mb-10 md:mb-20">
               We build the way the modern world{" "}
               <span className="text-[var(--accent)]">works</span>.
             </h2>
@@ -221,12 +236,12 @@ export default function Home() {
       </section>
 
       {/* ============ BETA ============ */}
-      <section className="shell py-20 md:py-32">
-        <div className="grid gap-14 lg:grid-cols-[1.15fr_1fr] items-start">
+      <section className="shell py-14 md:py-32">
+        <div className="grid gap-10 md:gap-14 lg:grid-cols-[1.15fr_1fr] items-start">
           <Reveal>
             <div>
-              <span className="eyebrow block mb-6">Early access</span>
-              <h2 className="display text-[clamp(2.4rem,7vw,6rem)] leading-[0.9]">
+              <span className="eyebrow block mb-5 md:mb-6">Early access</span>
+              <h2 className="display section-heading leading-[0.9]">
                 THE BETA
                 <br />
                 IS <span className="text-[var(--accent)]">OPEN</span>
@@ -260,7 +275,10 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={130}>
-            <BetaForm />
+            <BetaForm
+              title="Join the beta"
+              subtitle="Audiocrypt, Fasting Cycle, or Feeper — or follow the whole catalogue."
+            />
           </Reveal>
         </div>
       </section>

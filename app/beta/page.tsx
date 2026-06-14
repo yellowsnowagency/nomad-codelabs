@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BETA_PRODUCTS, PRODUCTS } from "@/app/lib/products";
+import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 import Reveal from "@/app/components/reveal";
 import StatusPill from "@/app/components/status-pill";
 import BetaForm from "@/app/components/beta-form";
@@ -9,6 +10,23 @@ export const metadata: Metadata = {
   title: "Beta program — get early access",
   description:
     "Join the Nomad Code Labs beta program. Audiocrypt, Fasting Cycle, and Feeper are accepting beta users now.",
+  alternates: { canonical: "/beta" },
+  openGraph: {
+    title: `Beta program — ${SITE_NAME}`,
+    description:
+      "Join the Nomad Code Labs beta program. Audiocrypt, Fasting Cycle, and Feeper are accepting beta users now.",
+    type: "website",
+    url: `${SITE_URL}/beta`,
+    siteName: SITE_NAME,
+    images: [{ url: "/og.png", alt: `${SITE_NAME} beta program` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Beta program — ${SITE_NAME}`,
+    description:
+      "Join the Nomad Code Labs beta program. Audiocrypt, Fasting Cycle, and Feeper are accepting beta users now.",
+    images: ["/og.png"],
+  },
 };
 
 export default function BetaPage() {
@@ -84,7 +102,10 @@ export default function BetaPage() {
         <Reveal delay={120}>
           <div className="lg:sticky lg:top-24">
             <p className="eyebrow mb-6">Register</p>
-            <BetaForm />
+            <BetaForm
+              title="Get on the list"
+              subtitle="Pick an open beta or ask us to keep you posted on everything."
+            />
           </div>
         </Reveal>
       </section>

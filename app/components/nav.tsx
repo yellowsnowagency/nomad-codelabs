@@ -30,8 +30,8 @@ export default function Nav() {
         borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
       }}
     >
-      <div className="shell flex items-center justify-between h-[72px]">
-        <Link href="/" className="wordmark text-[15px]">
+      <div className="shell flex items-center justify-between h-[64px] md:h-[72px]">
+        <Link href="/" className="wordmark text-[13px] md:text-[15px] tracking-[0.08em] md:tracking-normal">
           NOMAD<span className="text-[var(--accent)]"> // </span>CODELABS
         </Link>
 
@@ -47,11 +47,27 @@ export default function Nav() {
         </nav>
 
         <button
-          className="md:hidden text-[14px] text-[var(--ink)]"
+          type="button"
+          className="md:hidden relative h-10 w-10 text-[var(--ink)]"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
         >
-          {open ? "Close" : "Menu"}
+          <span
+            className={`absolute left-1/2 h-[1.5px] w-5 -translate-x-1/2 bg-current transition-all duration-300 ease-out ${
+              open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-[13px]"
+            }`}
+          />
+          <span
+            className={`absolute left-1/2 top-1/2 h-[1.5px] w-5 -translate-x-1/2 -translate-y-1/2 bg-current transition-all duration-300 ${
+              open ? "opacity-0 scale-x-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`absolute left-1/2 h-[1.5px] w-5 -translate-x-1/2 bg-current transition-all duration-300 ease-out ${
+              open ? "top-1/2 -translate-y-1/2 -rotate-45" : "top-[23px]"
+            }`}
+          />
         </button>
       </div>
 

@@ -30,7 +30,7 @@ export default function WorldClock() {
   }, []);
 
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] tracking-[0.18em] text-[var(--ink-dim)]">
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 md:gap-x-6 text-[10px] md:text-[11px] tracking-[0.14em] md:tracking-[0.18em] text-[var(--ink-dim)]">
       {ZONES.map((z) => (
         <span key={z.tz} className="tabular-nums">
           <span className="text-[var(--ink-faint)]">{z.label}</span>{" "}

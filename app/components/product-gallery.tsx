@@ -1,22 +1,44 @@
 import Image from "next/image";
 import type { Shot } from "@/app/lib/products";
 
-function DeviceShot({ shot }: { shot: Shot }) {
+function DeviceFrame({ shot, index }: { shot: Shot; index: number }) {
   return (
-    <figure className="flex flex-col items-center">
-      <div className="relative w-full max-w-[270px]">
-        <Image
-          src={shot.src}
-          alt={shot.caption}
-          width={420}
-          height={900}
-          className="w-full h-auto block drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-transform duration-[1.2s] ease-out hover:-translate-y-2"
+    <figure className="device-gallery-item group">
+      <div className="device-gallery-frame">
+        <div
+          className="device-gallery-glow"
+          aria-hidden
         />
+        <div className="device-gallery-bezel">
+          <Image
+            src={shot.src}
+            alt={shot.caption}
+            width={420}
+            height={900}
+            className="device-gallery-image"
+            sizes="(max-width: 768px) 72vw, (max-width: 1200px) 33vw, 280px"
+          />
+        </div>
+        <span className="device-gallery-index">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
-      <figcaption className="mt-6 max-w-[260px] text-center text-[13px] leading-relaxed text-[var(--ink-dim)]">
+      <figcaption className="device-gallery-caption">
         {shot.caption}
       </figcaption>
     </figure>
+  );
+}
+
+function DeviceGallery({ shots }: { shots: Shot[] }) {
+  return (
+    <div className="device-gallery">
+      <div className="device-gallery-track">
+        {shots.map((shot, i) => (
+          <DeviceFrame key={shot.src} shot={shot} index={i} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -44,13 +66,7 @@ export default function ProductGallery({ shots }: { shots: Shot[] }) {
   const isDevice = shots.every((s) => s.kind === "device");
 
   if (isDevice) {
-    return (
-      <div className="flex flex-wrap justify-center gap-x-10 gap-y-12 sm:gap-x-16">
-        {shots.map((s) => (
-          <DeviceShot key={s.src} shot={s} />
-        ))}
-      </div>
-    );
+    return <DeviceGallery shots={shots} />;
   }
 
   return (

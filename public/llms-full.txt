@@ -1,0 +1,202 @@
+# NOMAD // CODELABS — Full site corpus
+
+> Independent software house. We make software, beautifully. For a world without borders.
+
+URL: https://nmdcd.com
+Updated: 2026-06-06
+
+---
+
+## Home — https://nmdcd.com/
+
+NOMAD // CODELABS is an independent software house. A worldwide team of makers building modern, meticulously crafted software — encrypted, fast, and unapologetically bold. New, independent, and entirely our own.
+
+Tagline: We make software, beautifully. For a world without borders.
+
+Studio approach:
+- Borderless by design — no headquarters, no single timezone, no national bias.
+- Made, not assembled — every product built with intent and obsessive detail.
+- Loud, but calm — bold on the outside, quiet where it counts; keyboard-first, offline-aware.
+- One connected world — distinct products that speak the same language.
+
+The catalogue lists 13 products across encrypted media, health, invoicing, IPTV, the Minto productivity suite, publishing, film production, autonomous trading, writing, and infrastructure.
+
+Beta signup is available on the home page and at https://nmdcd.com/beta.
+
+---
+
+## Beta program — https://nmdcd.com/beta
+
+Join the Nomad Code Labs beta program for early access.
+
+Products currently accepting beta users:
+- Audiocrypt — encrypted audio DRM and licensing
+- Fasting Cycle — intermittent fasting companion (iOS & Android)
+- Feeper — invoicing for freelancers and nomads
+
+---
+
+## Audiocrypt — https://nmdcd.com/products/audiocrypt
+
+Status: BETA OPEN
+Category: Encrypted distribution
+Tagline: Encrypt once. Sell everywhere. Steal nothing.
+
+AudioCrypt is a secure digital rights and licensing management server with easy-to-use interfaces, built for healthcare audio files, digital creators, course creators, music composers, audio professionals, and independent studios. Files are encrypted once with military-grade AES-256-GCM and are never stored unencrypted — every asset carries a unique key.
+
+License-gated offline playback: purchased files download to the customer's player and stay playable offline for as long as the license is valid.
+
+Platforms: Web, API, macOS, Windows, iOS, Android
+
+---
+
+## Fasting Cycle — https://nmdcd.com/products/fasting-cycle
+
+Status: BETA OPEN
+Category: Health & rhythm
+Tagline: One circle. Always on the phase you're in.
+
+Fasting Cycle is a calm, precise fasting companion built around a single zooming circle that always focuses on the phase you're in — fasting, eating, or a full day's rhythm. Track weight, water, and steps with gentle reminders. Designed for people who live across timezones.
+
+Platforms: iOS, Android
+
+---
+
+## Feeper — https://nmdcd.com/products/feeper
+
+Status: BETA OPEN
+Category: Invoicing
+Tagline: Gorgeous invoices for freelancers and nomads.
+
+Feeper is a multi-tenant invoicing SaaS for freelancers. Keyboard-first, with tax regimes from day one — EU VAT with reverse-charge, US sales tax, UAE VAT, Australian GST. Estimates convert to invoices in one click.
+
+Platforms: Web, API
+
+---
+
+## Better TV — https://nmdcd.com/products/better-tv
+
+Status: IN DEVELOPMENT
+Category: Media client
+Tagline: Every screen. One library. Perfectly in sync.
+
+Better TV unifies Xtream Codes, M3U/M3U8, Jellyfin, and Emby behind one clean interface on iOS, tvOS, macOS, Android, Windows, and Linux. Cross-device sync for library, history, and recommendations.
+
+Platforms: iOS, tvOS, macOS, Android, Windows, Linux
+
+---
+
+## Minto Contact — https://nmdcd.com/products/minto-contact
+
+Status: IN DEVELOPMENT
+Category: Minto suite
+Tagline: The address book that actually remembers.
+
+Modern contacts layer for the Minto suite — relationships, context, and history in one calm surface. Interoperates with Minto Task and Minto Form Creator.
+
+Platforms: Web, iOS, Android
+
+---
+
+## Minto Task — https://nmdcd.com/products/minto-task
+
+Status: IN DEVELOPMENT
+Category: Minto suite
+Tagline: Tasks that float to where the work actually is.
+
+Task manager built on the Minto float model — work surfaces by relevance, not list order. Linked to Minto Contact and Form Creator.
+
+Platforms: Web, iOS, Android, macOS
+
+---
+
+## Minto Form Creator — https://nmdcd.com/products/minto-form-creator
+
+Status: IN DEVELOPMENT
+Category: Minto suite
+Tagline: Forms that compose themselves around the question.
+
+Form builder for the Minto suite — structured intake that flows into Contact and Task automatically.
+
+Platforms: Web
+
+---
+
+## Minto Mail — https://nmdcd.com/products/minto-mail
+
+Status: IN DEVELOPMENT
+Category: Minto suite
+Tagline: A Mac mail client that finally feels like one app.
+
+Keyboard-first Mac mail client with group-based inbox, messenger-style threads, and AI assist. Native Tauri 2 shell.
+
+Platforms: macOS
+
+---
+
+## Rerista — https://nmdcd.com/products/rerista
+
+Status: IN DEVELOPMENT
+Category: Publishing
+Tagline: The future of product journalism.
+
+Magazine for the products that shape our world — in-depth reviews, expert insight, and stories that matter. Editorial-grade typography for long-form reading.
+
+Platforms: Web
+
+---
+
+## Film Project Scheduler — https://nmdcd.com/products/film-scheduler
+
+Status: IN DEVELOPMENT
+Category: Production
+Tagline: Breakdowns and schedules for film and TV, finally calm.
+
+Production breakdown and scheduling — script to strip-board to shooting schedule. Built for ADs and producers.
+
+Platforms: Web, iOS
+
+---
+
+## Joe the Trader — https://nmdcd.com/products/joe-the-trader
+
+Status: INVITE ONLY
+Category: Autonomous markets
+Tagline: An autonomous AI trading desk that runs itself.
+
+Full AI trading desk with specialist agents for research, risk, execution, and portfolio management. Disclosed-trade mirroring, strategy lanes, and hard risk gating. Offered by private invitation only.
+
+Platforms: Web
+
+---
+
+## Writer's Room — https://nmdcd.com/products/writers-room
+
+Status: RESEARCH
+Category: Writing
+Tagline: Where stories get built before they get written.
+
+Collaborative writing room for screenwriters and authors — outlines, beats, and drafts in one place. In research.
+
+Platforms: Web, macOS
+
+---
+
+## CloudCut SuperSonic — https://nmdcd.com/products/cloudcut-supersonic
+
+Status: IN DEVELOPMENT
+Category: Infrastructure
+Tagline: Line-rate file transfer. Saturate the pipe.
+
+Production-grade large-file transfer with parallel multipart uploads to Cloudflare R2, automatic resume, and per-part SHA-256 verification.
+
+Platforms: macOS, Windows, API
+
+---
+
+## Contact & indexing
+
+- Sitemap: https://nmdcd.com/sitemap.xml
+- Robots: https://nmdcd.com/robots.txt
+- LLM index: https://nmdcd.com/llms.txt
+- Social preview image: https://nmdcd.com/og.png

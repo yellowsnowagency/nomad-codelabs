@@ -1,16 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { BETA_PRODUCTS, getProduct } from "@/app/lib/products";
 
 type State = "idle" | "loading" | "ok" | "error";
 
-export default function BetaForm({ defaultProduct }: { defaultProduct?: string }) {
+type BetaFormProps = {
+  defaultProduct?: string;
+  title?: string;
+  subtitle?: string;
+  className?: string;
+};
+
+function productLabel(status: string) {
+  if (status === "BETA OPEN") return "Beta open";
+  if (status === "INVITE ONLY") return "Invite only";
+  if (status === "IN DEVELOPMENT") return "In development";
+  return status.toLowerCase();
+}
+
+export default function BetaForm({
+  defaultProduct,
+  title = "Request beta access",
+  subtitle = "Leave your email. We’ll reach out when a slot opens.",
+  className = "",
+}: BetaFormProps) {
   const [state, setState] = useState<State>("idle");
   const [message, setMessage] = useState("");
+  const emailId = useId();
+  const productId = useId();
 
-  // Always make sure the product being viewed is selectable, even if it isn't
-  // a public-beta product (e.g. an invite-only product subpage).
   const extra =
     defaultProduct && !BETA_PRODUCTS.some((p) => p.slug === defaultProduct)
       ? getProduct(defaultProduct)
@@ -49,69 +68,93 @@ export default function BetaForm({ defaultProduct }: { defaultProduct?: string }
 
   if (state === "ok") {
     return (
-      <div className="card p-9">
-        <p className="eyebrow mb-4">✦ You&apos;re in</p>
+      <div className={`beta-form-shell beta-form-success ${className}`.trim()}>
+        <span className="beta-form-success-dot" aria-hidden />
+        <p className="eyebrow mb-3">You&apos;re in</p>
         <p className="text-[17px] leading-relaxed text-[var(--ink)]">{message}</p>
         <button
+          type="button"
           onClick={() => setState("idle")}
           className="mt-7 ul-link text-[14px] text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors"
         >
-          Register another →
+          Register another
         </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="card p-7 sm:p-9 flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <label className="eyebrow" htmlFor="beta-email">
-          Email
-        </label>
-        <input
-          id="beta-email"
-          name="email"
-          type="email"
-          required
-          placeholder="you@anywhere.earth"
-          className="bg-transparent border-b hairline py-3 text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none focus:border-[var(--accent)] transition-colors"
-        />
+    <form
+      onSubmit={onSubmit}
+      className={`beta-form-shell ${className}`.trim()}
+      noValidate
+    >
+      <div className="beta-form-header">
+        <p className="eyebrow mb-2">Beta access</p>
+        <h3 className="display text-[clamp(1.35rem,2.4vw,1.75rem)] text-[var(--ink)] leading-tight">
+          {title}
+        </h3>
+        {subtitle ? (
+          <p className="mt-3 text-[14px] leading-relaxed text-[var(--ink-dim)]">
+            {subtitle}
+          </p>
+        ) : null}
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label className="eyebrow" htmlFor="beta-product">
-          Product
-        </label>
-        <select
-          id="beta-product"
-          name="product"
-          defaultValue={defaultProduct ?? BETA_PRODUCTS[0]?.slug}
-          className="bg-transparent border-b hairline py-3 text-[15px] text-[var(--ink)] outline-none focus:border-[var(--accent)] transition-colors appearance-none cursor-pointer"
-        >
-          {options.map((p) => (
-            <option key={p.slug} value={p.slug} className="bg-[var(--bg-raised)]">
-              {p.name}
-              {p.status === "BETA OPEN"
-                ? " — beta open"
-                : p.status === "INVITE ONLY"
-                  ? " — request invite"
-                  : ""}
-            </option>
-          ))}
-          <option value="all" className="bg-[var(--bg-raised)]">
-            Everything — keep me posted
-          </option>
-        </select>
+      <div className="beta-form-fields">
+        <div className="form-field">
+          <label className="form-label" htmlFor={emailId}>
+            Email
+          </label>
+          <input
+            id={emailId}
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            placeholder="you@anywhere.earth"
+            className="form-control"
+          />
+        </div>
+
+        <div className="form-field">
+          <label className="form-label" htmlFor={productId}>
+            Product
+          </label>
+          <div className="form-select-wrap">
+            <select
+              id={productId}
+              name="product"
+              defaultValue={defaultProduct ?? BETA_PRODUCTS[0]?.slug}
+              className="form-control form-select"
+            >
+              {options.map((p) => (
+                <option key={p.slug} value={p.slug}>
+                  {p.name} — {productLabel(p.status)}
+                </option>
+              ))}
+              <option value="all">Everything — keep me posted</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <button type="submit" disabled={state === "loading"} className="btn btn-solid justify-center mt-1 disabled:opacity-60">
-        {state === "loading" ? "Registering…" : "Request access →"}
+      {state === "error" ? (
+        <p className="form-error" role="alert">
+          {message}
+        </p>
+      ) : null}
+
+      <button
+        type="submit"
+        disabled={state === "loading"}
+        className="btn btn-solid w-full justify-center disabled:opacity-60"
+      >
+        {state === "loading" ? "Sending…" : "Request access"}
       </button>
 
-      {state === "error" && (
-        <p className="text-[12px] text-[var(--danger)]">{message}</p>
-      )}
-      <p className="text-[11px] leading-relaxed text-[var(--ink-faint)]">
+      <p className="form-footnote">
         No spam. One email when your beta slot opens. Unsubscribe anytime.
       </p>
     </form>

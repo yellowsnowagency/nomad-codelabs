@@ -97,9 +97,14 @@ export const PRODUCTS: Product[] = [
     stack: ["SwiftUI", "FastingCore (Swift)", "Native iOS"],
     beta: true,
     shots: [
-      { src: "/screens/fasting-eating.png", caption: "Eating window — the ring zooms to the active phase.", kind: "device" },
-      { src: "/screens/fasting-fasting.png", caption: "16 hours fasting — at-a-glance phase state.", kind: "device" },
-      { src: "/screens/fasting-fullday.png", caption: "A full day's rhythm with water, weight, and steps.", kind: "device" },
+      { src: "/screens/fasting-cycle-eating-light.png", caption: "Eating window — the ring zooms to the phase you're in.", kind: "device" },
+      { src: "/screens/fasting-cycle-fasting-light.png", caption: "Fasting phase — calm, at-a-glance countdown.", kind: "device" },
+      { src: "/screens/fasting-cycle-fullday-light.png", caption: "Full day — your whole rhythm on one circle.", kind: "device" },
+      { src: "/screens/fasting-cycle-settings-light.png", caption: "Drag the ring to shape your eating window and sleep.", kind: "device" },
+      { src: "/screens/fasting-cycle-eating-dark.png", caption: "Dark mode — eating window with weight, water, and steps.", kind: "device" },
+      { src: "/screens/fasting-cycle-fasting-dark.png", caption: "Dark mode — fasting phase, stripped to what matters.", kind: "device" },
+      { src: "/screens/fasting-cycle-fullday-dark.png", caption: "Dark mode — the full-day circle with every log in place.", kind: "device" },
+      { src: "/screens/fasting-cycle-log-dark.png", caption: "Log meals and weight right from the ring.", kind: "device" },
     ],
   },
   {
